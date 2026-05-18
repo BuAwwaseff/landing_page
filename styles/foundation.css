@@ -87,7 +87,7 @@
   --container-main: 1100px;
   --container-hero: 1500px;
 
-  --section-pad-y: clamp(72px, 8vw, 128px);
+  --section-pad-y: clamp(32px, 4.5vw, 64px);
   --section-pad-x: clamp(16px, 2vw, 28px);
   --section-gap: clamp(20px, 3vw, 40px);
 
@@ -152,21 +152,33 @@
   --shadow-legend-cyan: 0 0 14px var(--color-cyan-22);
 
   /* Typography */
-  --type-display: clamp(2.6rem, 4.9vw, 4rem);
-  --type-heading: clamp(1.88rem, 3.6vw, 2.88rem);
-  --type-subheading: clamp(1.6rem, 2.75vw, 2.34rem);
-  --type-card-title: clamp(1.24rem, 1.82vw, 1.72rem);
-  --type-body-lg: clamp(0.92rem, 1.08vw, 1.04rem);
-  --type-body: clamp(0.89rem, 0.96vw, 0.95rem);
-  --type-label: 0.8rem;
-  --type-meta: 0.7rem;
-  --type-hero-accent: clamp(0.78rem, 0.86vw, 0.92rem);
-  --type-stat: clamp(1.45rem, 2.6vw, 2.1rem);
-  --type-metric: clamp(2.8rem, 6.2vw, 4.8rem);
-  --type-metric-secondary: clamp(2rem, 4vw, 3.1rem);
+  --type-step--2: clamp(0.72rem, 0.69rem + 0.16vw, 0.82rem);
+  --type-step--1: clamp(0.84rem, 0.8rem + 0.2vw, 0.96rem);
+  --type-step-0: clamp(0.96rem, 0.91rem + 0.26vw, 1.12rem);
+  --type-step-1: clamp(1.12rem, 1.03rem + 0.44vw, 1.4rem);
+  --type-step-2: clamp(1.32rem, 1.17rem + 0.76vw, 1.8rem);
+  --type-step-3: clamp(1.58rem, 1.34rem + 1.12vw, 2.28rem);
+  --type-step-4: clamp(1.9rem, 1.55rem + 1.62vw, 2.92rem);
+  --type-step-5: clamp(2.28rem, 1.76rem + 2.42vw, 3.82rem);
+  --type-step-6: clamp(2.84rem, 2rem + 3.68vw, 5.16rem);
+  --type-step-7: clamp(3.3rem, 2.16rem + 4.98vw, 6.44rem);
 
-  --line-tight: 1.02;
-  --line-heading: 1.08;
+  --type-display: clamp(1.72rem, 1.34rem + 1.62vw, 2.72rem);
+  --type-hero-display: var(--type-step-6);
+  --type-heading: var(--type-step-4);
+  --type-subheading: var(--type-step-3);
+  --type-card-title: var(--type-step-2);
+  --type-body-lg: var(--type-step-0);
+  --type-body: clamp(0.92rem, 0.89rem + 0.14vw, 1rem);
+  --type-label: var(--type-step--1);
+  --type-meta: var(--type-step--2);
+  --type-hero-accent: var(--type-step--1);
+  --type-stat: var(--type-step-2);
+  --type-metric: var(--type-step-7);
+  --type-metric-secondary: var(--type-step-4);
+
+  --line-tight: 0.98;
+  --line-heading: 1.05;
   --line-body: 1.7;
 
   /* Motion */
@@ -238,7 +250,7 @@
 
 @media (max-width: 767px) {
   :root {
-    --section-pad-y: clamp(56px, 8vw, 88px);
+    --section-pad-y: clamp(24px, 4vw, 44px);
     --section-gap: 20px;
 
     --bg-grid-size: 64px;

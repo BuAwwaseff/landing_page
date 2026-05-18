@@ -121,6 +121,11 @@
   line-height: var(--line-tight);
 }
 
+.type-display-hero {
+  font-size: var(--type-hero-display);
+  line-height: 0.92;
+}
+
 .type-heading {
   font-size: var(--type-heading);
   line-height: var(--line-heading);
