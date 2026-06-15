@@ -10,7 +10,7 @@ function EmailIcon() {
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-5 w-5"
+      className="h-5 w-5 text-black"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.8"

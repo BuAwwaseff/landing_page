@@ -221,7 +221,10 @@ export default function HomePage() {
           <SectionHeading eyebrow={content.games.eyebrow} title={content.games.title} body={content.games.body} />
           <div className="mt-8 grid gap-4 lg:grid-cols-3">
             {content.games.cards.map((card) => (
-              <article key={card.title} className="landing-surface landing-hover group overflow-hidden rounded-[30px]">
+              <article
+                key={card.title}
+                className="landing-surface landing-hover group flex h-full flex-col overflow-hidden rounded-[30px]"
+              >
                 <div className="relative aspect-[4/3]">
                   <SmartVisual
                     src={card.image}
@@ -230,7 +233,7 @@ export default function HomePage() {
                     imageClassName="p-6 transition-transform duration-500 ease-out group-hover:scale-110"
                   />
                 </div>
-                <div className="space-y-3 p-5">
+                <div className="flex flex-1 flex-col space-y-3 p-5">
                   <div className="flex items-center justify-between gap-3">
                     <p className="type-meta font-extrabold uppercase tracking-[0.18em] text-[#FFC100]">{card.eyebrow}</p>
                     {card.metric ? (
@@ -240,7 +243,7 @@ export default function HomePage() {
                     ) : null}
                   </div>
                   <h3 className="type-card-title font-bold text-white">{card.title}</h3>
-                  <div className="pt-1">
+                  <div className="mt-auto pt-1">
                     <CardAction href={content.hero.primaryHref} label={gamesCtaLabel} />
                   </div>
                 </div>
