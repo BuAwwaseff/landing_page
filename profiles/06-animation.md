@@ -3,12 +3,13 @@
 Purpose: define the motion rules for the landing-page system.
 
 This file controls:
-- Anime.js-only requirement
+- Anime.js-first requirement
 - allowed motion categories
 - shared motion presets
 - motion by section
 - reduced-motion behavior
 - performance safeguards
+- shared brand mark motion exception
 
 This file does not control:
 - section order
@@ -22,7 +23,11 @@ This file does not control:
 
 # 1. Runtime Choice
 
-All motion in this system must use Anime.js.
+All section and page motion in this system must use Anime.js.
+
+Exception:
+- the shared inline SVG brand mark may use sanctioned local CSS keyframes inside the shared logo primitive
+- this exception applies only to the shared logo component, not arbitrary section animation
 
 Do not use Framer Motion for new landing pages or new sections.
 
@@ -38,6 +43,7 @@ Allowed:
 5. marquee / scrolling tracks
 6. chart and path animation
 7. tab/content transitions
+8. shared brand mark loop inside the sanctioned logo primitive only
 
 Do not create a new animation approach inside every section.
 
@@ -49,6 +55,7 @@ Do not create a new animation approach inside every section.
 - Entrance motion is short and directional.
 - Hover motion is subtle.
 - Ambient loops are slow and low amplitude.
+- Shared logo motion must stay low-amplitude and identical across markets unless the shared primitive is intentionally updated.
 - Avoid multiple competing infinite loops in the same viewport cluster.
 - Scroll-hijack behavior is discouraged and opt-in only.
 - Auto-rotation is a content device, not decoration.
@@ -186,6 +193,17 @@ Allowed:
 - controlled expand animation
 - card hover lift
 
+## Shared Brand Mark
+
+Allowed:
+- the shared `MelbetAnimatedLogo` primitive may use local keyframes for SVG letter motion and compact pulse states
+- logo motion may be bundled inside the component or one dedicated shared logo stylesheet
+
+Not allowed:
+- per-market rewrites of the logo animation
+- separate logo motion systems in different headers/footers
+- loading the brand logo animation from remote CSS or asset files
+
 ---
 
 # 8. Performance Rules
@@ -225,3 +243,8 @@ Motion should be:
 - cleanup-safe
 
 Do not import Anime.js directly into every random component if a preset helper exists.
+
+For the shared logo primitive:
+- keep keyframes colocated with `MelbetAnimatedLogo.tsx` or a single shared logo stylesheet
+- keep reduced-motion handling in the same shared implementation
+- keep header/footer consumers free of custom logo animation code

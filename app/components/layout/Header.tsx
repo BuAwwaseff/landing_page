@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatedMarketLogo } from "../logo";
+import { MelbetAnimatedLogo } from "../logo";
 import { useLanguage } from "../providers/LanguageContext";
 
 const languages = [
@@ -96,13 +96,8 @@ export default function Header() {
             </nav>
 
             <div className="ms-auto flex shrink-0 items-center justify-end">
-              <Link href="/" className="shrink-0" aria-label="Melbet">
-                <AnimatedMarketLogo
-                  ariaLabel="Melbet"
-                  preset="landing"
-                  variantPool={["idle"]}
-                  wrapperClassName="inline-flex"
-                />
+              <Link href="/" className="inline-flex shrink-0 justify-end" aria-label="Melbet">
+                <MelbetAnimatedLogo decorative size="sm" className="melbet-logo--flush-end" />
               </Link>
             </div>
           </div>

@@ -3,9 +3,29 @@
 import Image from "next/image";
 import { useLanguage } from "../providers/LanguageContext";
 import { Reveal } from "@/lib/Animation/Reveal";
+import { getLandingPlayerHomeContent } from "@/lib/player-home";
+
+function EmailIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-5 w-5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="3.5" y="5.5" width="17" height="13" rx="2.5" />
+      <path d="m5.5 7.5 6.5 5 6.5-5" />
+    </svg>
+  );
+}
 
 export default function FinalCTA() {
-  const { t, isArabic } = useLanguage();
+  const { t, language, isArabic } = useLanguage();
+  const home = getLandingPlayerHomeContent(language);
 
   return (
     <Reveal
@@ -52,7 +72,9 @@ export default function FinalCTA() {
               className="mt-8 flex flex-wrap items-center justify-center gap-4"
             >
               <a
-                href="#"
+                href={home.finalCta.primaryHref}
+                target="_blank"
+                rel="noreferrer"
                 className="group inline-flex h-[60px] items-center overflow-hidden rounded-full border border-[#FFC100]/30 bg-[#FFC100]/10 px-5 text-[#FFC100] shadow-[0_10px_30px_rgba(255,193,0,0.12)] transition-all duration-300 ease-out hover:border-[#FFC100]/55 hover:bg-[#FFC100] hover:text-black hover:shadow-[0_14px_36px_rgba(255,193,0,0.22)]"
               >
                 <span className="relative h-5 w-5 shrink-0">
@@ -70,20 +92,15 @@ export default function FinalCTA() {
               </a>
 
               <a
-                href="#"
-                className="group inline-flex h-[60px] items-center overflow-hidden rounded-full border border-white/12 bg-white/5 px-5 text-white transition-all duration-300 ease-out hover:border-[#25D366]/50 hover:bg-[#25D366] hover:text-black hover:shadow-[0_14px_36px_rgba(37,211,102,0.22)]"
+                href={home.finalCta.secondaryHref}
+                className="group inline-flex h-[60px] items-center overflow-hidden rounded-full border border-white/20 bg-white px-5 text-black transition-all duration-300 ease-out hover:border-white/35 hover:bg-white hover:text-black hover:shadow-[0_14px_36px_rgba(255,255,255,0.18)]"
               >
-                <span className="relative h-5 w-5 shrink-0">
-                  <Image
-                    src="/whatsapp.png"
-                    alt="WhatsApp"
-                    fill
-                    className="object-contain"
-                  />
+                <span className="flex h-5 w-5 shrink-0 items-center justify-center">
+                  <EmailIcon />
                 </span>
 
-                <span className="type-label max-w-0 overflow-hidden whitespace-nowrap pl-0 font-bold transition-all duration-300 ease-out group-hover:max-w-[180px] group-hover:pl-3">
-                  {t.aboutus.register.whatsapp}
+                <span className="type-label max-w-0 overflow-hidden whitespace-nowrap pl-0 font-bold text-black transition-all duration-300 ease-out group-hover:max-w-[180px] group-hover:pl-3">
+                  {t.aboutus.register.email}
                 </span>
               </a>
             </Reveal>

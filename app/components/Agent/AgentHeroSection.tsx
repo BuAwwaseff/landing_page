@@ -9,11 +9,7 @@ export default function AgentHeroSection() {
   const { t, isArabic } = useLanguage();
 
   return (
-    <Reveal
-      as="section"
-      preset="section"
-      className="relative overflow-hidden border-b border-white/10 bg-transparent"
-    >
+    <section className="relative overflow-hidden border-b border-white/10 bg-transparent">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_38%,rgba(255,193,0,0.14),transparent_20%)]" />
       </div>
@@ -31,7 +27,7 @@ export default function AgentHeroSection() {
         >
           <Reveal
             as="div"
-            delay={0.25}
+            delay={0.06}
             className={[
               "mt-8 inline-flex items-center rounded-full border border-[#FFC100]/25 bg-[#FFC100]/10 px-4 py-1.5 text-sm font-medium text-[#FFC100]",
               isArabic ? "self-start" : "self-start",
@@ -43,7 +39,7 @@ export default function AgentHeroSection() {
           <Reveal
             as="h1"
             preset="text"
-            delay={0.42}
+            delay={0.12}
             className={[
               "mt-4 text-4xl font-bold leading-[1.02] text-white sm:text-5xl lg:text-6xl",
               isArabic ? "text-right self-end" : "text-left self-start",
@@ -55,7 +51,7 @@ export default function AgentHeroSection() {
           <Reveal
             as="p"
             preset="text"
-            delay={0.74}
+            delay={0.18}
             className={[
               "mt-8 flex flex-wrap gap-4",
               isArabic ? "ml-auto justify-end flex-row-reverse" : "mr-auto justify-start",
@@ -66,7 +62,7 @@ export default function AgentHeroSection() {
 
           <Reveal
             as="div"
-            delay={1}
+            delay={0.24}
             className={[
               "mt-8 flex flex-wrap gap-4",
               isArabic
@@ -93,7 +89,7 @@ export default function AgentHeroSection() {
         <Reveal
           as="div"
           preset="soft"
-          delay={1.28}
+          delay={0.3}
           className={[
             "relative flex min-w-0 items-start justify-center px-0 pt-0 pb-0",
             isArabic ? "order-1" : "order-2",
@@ -109,6 +105,6 @@ export default function AgentHeroSection() {
           <div className="pointer-events-none absolute -right-6 bottom-4 h-24 w-24 rounded-full bg-white/6 blur-3xl" />
         </Reveal>
       </div>
-    </Reveal>
+    </section>
   );
 }

@@ -97,7 +97,7 @@ Purpose:
 
 Should contain:
 - shared header component
-- brand/logo area
+- brand/logo area using the shared local logo component
 - main navigation items
 - language switcher
 - mobile navigation support
@@ -393,6 +393,17 @@ Required support:
 - grouped items with child links
 - home and partnership deep links
 
+Brand mark standard:
+- use the shared local `MelbetAnimatedLogo` component directly
+- default to `size="sm"` in the shared header unless layout density requires another approved size
+- keep the logo inside the shared layout component, not page-level content
+- when the surrounding link already carries the accessible label, pass the logo as decorative
+
+Do not:
+- swap the primary brand mark to `/public/logo.svg`, `/public/logo.png`, or another image path
+- render the primary brand mark with `next/image`
+- make logo source a content/config field for normal market builds
+
 Header must not invent market-specific navigation internally.
 
 Navigation comes from:
@@ -449,6 +460,11 @@ Contains:
 - legal lines
 
 Footer content must come from structured content, not hardcoded JSX.
+
+Brand mark standard:
+- use the shared local `MelbetAnimatedLogo` component directly
+- default to `size="md"` in the shared footer unless a compact footer variant explicitly needs smaller sizing
+- keep footer brand rendering inside the shared footer component, not page sections
 
 ---
 

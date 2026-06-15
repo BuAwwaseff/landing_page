@@ -1,0 +1,16 @@
+
+> landingpage@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.0 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://172.28.128.200:3000
+✓ Ready in 565ms
+Creating turbopack project {
+  dir: 'C:\\Users\\Mohannad Mahmoud\\Desktop\\landing pages\\landingpage',
+  testMode: true
+}
+- Experiments (use with caution):
+  ✓ externalDir
+
+[?25h

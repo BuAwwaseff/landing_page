@@ -1,162 +1,236 @@
 .interactive-bg {
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
   isolation: isolate;
+  background: #040507;
+}
+
+.interactive-bg-base,
+.interactive-bg-glow,
+.interactive-bg-atmosphere,
+.interactive-bg-river,
+.interactive-bg-dunes,
+.interactive-bg-scene,
+.interactive-bg-vignette {
+  position: absolute;
 }
 
 .interactive-bg-base {
-  position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg,
-      var(--color-bg-top) 0%,
-      var(--color-bg-mid) 46%,
-      var(--color-bg-bottom) 100%);
+    radial-gradient(circle at 50% -8%, rgba(255, 221, 158, 0.18) 0%, transparent 30%),
+    radial-gradient(circle at 18% 18%, rgba(124, 240, 255, 0.08) 0%, transparent 22%),
+    radial-gradient(circle at 82% 18%, rgba(255, 193, 0, 0.08) 0%, transparent 20%),
+    linear-gradient(180deg, #0b111d 0%, #090d16 28%, #07090f 54%, #040507 100%);
 }
 
-.interactive-bg-goldwash {
-  position: absolute;
+.interactive-bg-glow {
+  border-radius: 999px;
+  filter: blur(56px);
+}
+
+.interactive-bg-glow--left {
+  top: 10%;
+  left: -10%;
+  width: min(34vw, 29rem);
+  height: min(28vw, 22rem);
+  background: radial-gradient(circle, rgba(107, 221, 241, 0.16), transparent 72%);
+  opacity: 0.58;
+}
+
+.interactive-bg-glow--right {
+  top: 16%;
+  right: -12%;
+  width: min(38vw, 33rem);
+  height: min(30vw, 25rem);
+  background: radial-gradient(circle, rgba(255, 193, 0, 0.16), transparent 74%);
+  opacity: 0.56;
+}
+
+.interactive-bg-glow--horizon {
+  left: 18%;
+  right: 18%;
+  bottom: 17%;
+  height: clamp(6rem, 10vw, 8rem);
+  background: radial-gradient(circle at center, rgba(255, 207, 110, 0.18), transparent 72%);
+  filter: blur(34px);
+  opacity: 0.82;
+}
+
+.interactive-bg-atmosphere {
   inset: 0;
   background:
-    radial-gradient(circle at 18% 20%, var(--color-gold-16) 0%, transparent 34%),
-    radial-gradient(circle at 78% 16%, var(--color-gold-11) 0%, transparent 28%),
-    radial-gradient(circle at 50% 52%, var(--color-gold-10) 0%, transparent 40%),
-    radial-gradient(circle at 50% 84%, var(--color-gold-08) 0%, transparent 34%);
+    linear-gradient(180deg, rgba(255, 224, 164, 0.05) 0%, transparent 22%),
+    radial-gradient(circle at 50% 16%, rgba(255, 228, 178, 0.12), transparent 18%),
+    radial-gradient(circle at 50% 34%, rgba(255, 214, 138, 0.06), transparent 24%),
+    linear-gradient(180deg, transparent 52%, rgba(255, 193, 0, 0.04) 74%, transparent 100%);
 }
 
-.interactive-bg-icons {
+.interactive-bg-river {
+  left: 9%;
+  right: 9%;
+  bottom: 16%;
+  height: clamp(5rem, 8.5vw, 7rem);
+  background:
+    radial-gradient(circle at 24% 54%, rgba(255, 228, 181, 0.16), transparent 18%),
+    linear-gradient(180deg, rgba(124, 240, 255, 0.2), rgba(22, 48, 82, 0.08) 58%, transparent 100%);
+  clip-path: polygon(
+    0 74%,
+    9% 69%,
+    18% 72%,
+    28% 61%,
+    39% 66%,
+    50% 50%,
+    62% 60%,
+    74% 48%,
+    86% 55%,
+    100% 48%,
+    100% 100%,
+    0 100%
+  );
+  filter: blur(12px);
+  opacity: 0.78;
+}
+
+.interactive-bg-river::after {
+  content: "";
   position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
+  inset: 46% 10% auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 243, 213, 0.46), transparent);
 }
 
-.interactive-bg-symbol-shell {
-  position: absolute;
-  z-index: 2;
-  transform: translateZ(0) scale(1.08);
-  will-change: transform, opacity, filter;
+.interactive-bg-dunes {
+  inset-inline: 0;
+  background-repeat: no-repeat;
+  background-position: center bottom;
 }
 
-.interactive-bg-symbol-shell--pulse {
-  z-index: 3;
+.interactive-bg-dunes--far {
+  bottom: 8%;
+  height: clamp(11rem, 20vw, 17rem);
+  background:
+    linear-gradient(180deg, rgba(255, 225, 169, 0.08) 0%, rgba(33, 47, 76, 0.16) 24%, rgba(8, 12, 22, 0.88) 100%);
+  clip-path: polygon(
+    0 100%,
+    0 72%,
+    10% 67%,
+    19% 70%,
+    30% 61%,
+    40% 67%,
+    50% 56%,
+    61% 62%,
+    72% 52%,
+    82% 59%,
+    91% 51%,
+    100% 57%,
+    100% 100%
+  );
+  opacity: 0.6;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.72) 18%, #fff 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.72) 18%, #fff 100%);
 }
 
-.interactive-bg-symbol-shell--glow {
-  isolation: isolate;
+.interactive-bg-scene {
+  left: 3%;
+  right: 3%;
+  bottom: 5%;
+  height: clamp(13rem, 24vw, 20rem);
+  opacity: 0.9;
 }
 
-.interactive-bg-symbol-img,
-.interactive-bg-symbol-reveal {
-  position: absolute;
-  inset: 0;
-}
-
-.interactive-bg-symbol-img {
-  display: block;
+.interactive-bg-scene-svg {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 18px rgba(255, 193, 0, 0.04));
 }
 
-.interactive-bg-symbol-img--base {
-  opacity: 1;
-}
-
-.interactive-bg-symbol-img--line {
-  opacity: 0.88;
-  filter:
-    brightness(10)
-    saturate(100%)
-    invert(76%)
-    sepia(77%)
-    saturate(1597%)
-    brightness(104%)
-    contrast(110%)
-}
-.interactive-bg-symbol-img--glow {
-  opacity: 0.42;
-  filter:
-    brightness(100) saturate(100%) invert(76%) sepia(77%) saturate(1597%) hue-rotate(358deg) brightness(103%) contrast(108%) blur(1.2px) drop-shadow(0 0 8px rgba(255, 193, 0, 0.24)) drop-shadow(0 0 18px rgba(255, 193, 0, 0.16));
-}
-
-.interactive-bg-grid {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  opacity: 0.6;
-  background-image:
-    linear-gradient(to right, var(--color-gold-22) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--color-gold-22) 1px, transparent 1px);
-  background-size: var(--bg-grid-size) var(--bg-grid-size);
-}
-
-.interactive-bg-reveal {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  background: rgba(10, 10, 10, 0.55);
-  backdrop-filter: blur(6px) saturate(1);
-  -webkit-backdrop-filter: blur(6px) saturate(1);
-  mask-image:
-    radial-gradient(circle var(--bg-reveal-mask-size) at var(--mx, var(--bg-reveal-x)) var(--my, var(--bg-reveal-y)),
-      rgba(0, 0, 0, 0.02) 0,
-      rgba(0, 0, 0, 0.02) var(--bg-reveal-stop-1),
-      rgba(0, 0, 0, 0.08) var(--bg-reveal-stop-2),
-      rgba(0, 0, 0, 0.22) var(--bg-reveal-stop-3),
-      rgba(0, 0, 0, 0.58) var(--bg-reveal-stop-4),
-      black var(--bg-reveal-mask-size));
-  -webkit-mask-image:
-    radial-gradient(circle var(--bg-reveal-mask-size) at var(--mx, var(--bg-reveal-x)) var(--my, var(--bg-reveal-y)),
-      rgba(0, 0, 0, 0.02) 0,
-      rgba(0, 0, 0, 0.02) var(--bg-reveal-stop-1),
-      rgba(0, 0, 0, 0.08) var(--bg-reveal-stop-2),
-      rgba(0, 0, 0, 0.22) var(--bg-reveal-stop-3),
-      rgba(0, 0, 0, 0.58) var(--bg-reveal-stop-4),
-      black var(--bg-reveal-mask-size));
+.interactive-bg-dunes--near {
+  inset-inline: -10%;
+  bottom: -8%;
+  height: clamp(13rem, 26vw, 21rem);
+  background:
+    radial-gradient(circle at 36% 10%, rgba(255, 205, 120, 0.1), transparent 22%),
+    linear-gradient(180deg, rgba(15, 24, 44, 0.2) 0%, rgba(7, 10, 18, 0.96) 42%, rgba(2, 3, 6, 1) 100%);
+  clip-path: polygon(
+    0 100%,
+    0 88%,
+    8% 80%,
+    18% 84%,
+    29% 75%,
+    39% 82%,
+    52% 70%,
+    62% 79%,
+    73% 72%,
+    82% 78%,
+    92% 70%,
+    100% 74%,
+    100% 100%
+  );
+  opacity: 0.98;
 }
 
 .interactive-bg-vignette {
-  position: absolute;
   inset: 0;
-  z-index: 4;
   background:
-    radial-gradient(circle at center, transparent 52%, var(--bg-vignette-color) 100%);
+    radial-gradient(circle at center, transparent 46%, rgba(0, 0, 0, 0.36) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.12), transparent 24%, rgba(0, 0, 0, 0.3) 100%);
 }
 
-@keyframes interactiveBgSymbolPulse {
-
-  0%,
-  100% {
-    opacity: 0.55;
-    filter:
-      var(--bg-symbol-glow-filter) blur(4px) drop-shadow(0 0 10px var(--color-gold-22)) drop-shadow(0 0 20px var(--color-gold-12));
+@media (max-width: 1023px) {
+  .interactive-bg-glow--left {
+    top: 13%;
+    left: -18%;
+    width: 18rem;
+    height: 15rem;
   }
 
-  50% {
-    opacity: 0.95;
-    filter:
-      var(--bg-symbol-glow-filter) blur(6px) drop-shadow(0 0 14px var(--color-gold-36)) drop-shadow(0 0 30px var(--color-gold-20));
+  .interactive-bg-glow--right {
+    top: 20%;
+    right: -24%;
+    width: 20rem;
+    height: 16rem;
   }
-}
 
-.interactive-bg-symbol-shell--glow .interactive-bg-symbol-img--glow,
-.interactive-bg-symbol-shell--pulse .interactive-bg-symbol-img--glow {
-  animation: interactiveBgSymbolPulse var(--motion-symbol-pulse);
+  .interactive-bg-scene {
+    left: -1%;
+    right: -1%;
+  }
 }
 
 @media (max-width: 767px) {
-  .interactive-bg-symbol-shell {
-    opacity: var(--bg-symbol-mobile-opacity) !important;
-    transform: translateZ(0) scale(1.04);
+  .interactive-bg-glow--horizon {
+    left: 8%;
+    right: 8%;
+    bottom: 19%;
+    height: 5rem;
   }
 
-  .interactive-bg-symbol-shell--glow .interactive-bg-symbol-img--glow,
-  .interactive-bg-symbol-shell--pulse .interactive-bg-symbol-img--glow {
-    filter:
-      var(--bg-symbol-glow-filter) blur(4px) drop-shadow(0 0 8px var(--color-gold-22)) drop-shadow(0 0 14px var(--color-gold-12));
+  .interactive-bg-river {
+    left: 2%;
+    right: 2%;
+    bottom: 18%;
+    height: 4.2rem;
+  }
+
+  .interactive-bg-dunes--far {
+    bottom: 11%;
+    height: 9rem;
+  }
+
+  .interactive-bg-scene {
+    left: -4%;
+    right: -4%;
+    bottom: 7%;
+    height: 11rem;
+  }
+
+  .interactive-bg-dunes--near {
+    bottom: -4%;
+    height: 10rem;
   }
 }

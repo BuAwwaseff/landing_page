@@ -51,6 +51,7 @@ Owns:
 - motion presets
 - direction helpers
 - shared primitives
+- shared brand mark primitive
 - approved variants
 - system vocabulary
 
@@ -101,7 +102,7 @@ A section does not invent market logic.
 4. Content separate from layout.
 5. Theme swap, not rewrite.
 6. RTL is a system feature.
-7. Anime.js only for motion.
+7. Anime.js for section/page motion; shared brand mark may use sanctioned local CSS keyframes.
 8. Dual-page market model by default.
 9. Tight rhythm over airy spacing.
 10. Market pages must be visually distinct.
@@ -135,6 +136,7 @@ Shared components should be organized by responsibility:
 
 ```txt
 components/ui              -> neutral primitives
+components/logo            -> shared inline SVG brand mark primitives
 components/layout          -> header, footer, shells, section wrappers
 components/sections/home   -> player-facing rich patterns
 components/sections        -> approved section variants
@@ -149,10 +151,28 @@ public                     -> predictable media taxonomy
 
 Rules:
 - `components/ui` stays neutral.
+- `components/logo` owns the primary brand mark implementation.
 - `components/sections` expresses approved variants only.
 - `content/system/terminology.ts` is the shared vocabulary source.
 - `MarketPageShell` resolves locale, direction, header/footer content, and route-aware chrome.
 - `lib/layout-contract.ts` and `lib/direction.ts` prevent responsive/RTL improvisation in sections.
+
+## Shared Brand Mark Standard
+
+The primary MelBet brand mark is a shared local SVG component, not a market asset.
+
+Technical standard:
+- the shared implementation lives in `app/components/logo/MelbetAnimatedLogo.tsx` or the equivalent shared logo primitive file
+- SVG path data is stored inline in the component
+- the component owns its size map, color mapping, reduced-motion handling, and sanctioned logo animation
+- shared layout components import the logo component directly in header/footer chrome
+- `AnimatedMarketLogo` may remain as a compatibility wrapper, but new work should use `MelbetAnimatedLogo` directly
+
+Do not:
+- use `/public/logo.svg`, `/public/logo.png`, or remote URLs for the primary brand mark
+- render the primary brand mark through `next/image`
+- move primary brand logo source/alt into structured content
+- create a market-specific logo implementation unless it is promoted back into the shared standard
 
 ---
 
@@ -210,6 +230,7 @@ Do not:
 - create a new codebase per market
 - hardcode market strings inside components
 - use Framer Motion in new sections
+- use file-based primary brand logos in header/footer chrome
 - add unapproved layout variants
 - duplicate Arabic and English component trees
 - hand-roll custom hover physics in each component

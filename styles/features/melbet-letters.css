@@ -37,6 +37,16 @@
   animation: melbetGlowPulse 3.6s ease-in-out infinite;
 }
 
+.melbet-wordmark--plain {
+  animation: none;
+  filter: none;
+}
+
+.melbet-wordmark--hero {
+  line-height: 0.92;
+  padding-top: 0.08em;
+}
+
 .melbet-letter {
   display: inline-block;
   animation: melbetWave 3.2s ease-in-out infinite;
@@ -79,6 +89,11 @@
   text-shadow:
     0 0 12px rgba(255, 193, 0, 0.22),
     0 0 28px rgba(255, 193, 0, 0.14);
+}
+
+.melbet-wordmark--plain .melbet-letter--white,
+.melbet-wordmark--plain .melbet-letter--yellow {
+  text-shadow: none;
 }
 
 .melbet-button {

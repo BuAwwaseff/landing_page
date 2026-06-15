@@ -29,7 +29,8 @@ A market page or page pair is complete only if:
 - uses approved section variants only
 - uses theme tokens only
 - uses structured content only
-- uses Anime.js shared motion presets only
+- uses Anime.js shared motion presets for section/page motion
+- uses the shared local brand mark standard
 - respects ownership boundaries
 - defines separate page profiles for Home and Partnership when both exist
 
@@ -70,6 +71,8 @@ Check:
 - no missing imports
 - no missing assets
 - no casing mismatch in asset paths
+- primary brand mark renders through the shared local SVG component, not a file asset
+- shared logo animation respects reduced motion
 - no hydration errors
 - no horizontal overflow
 
@@ -126,6 +129,7 @@ Check:
 Header:
 - shared component used
 - brand/logo present
+- brand/logo uses the shared `MelbetAnimatedLogo` standard
 - nav comes from content/config
 - language switcher works if enabled
 - grouped items supported
@@ -135,6 +139,7 @@ Header:
 
 Footer:
 - content-driven
+- brand/logo uses the shared `MelbetAnimatedLogo` standard
 - links map to rendered sections/routes
 - contact links are valid if present
 - minimal/full variant matches page needs
@@ -167,6 +172,7 @@ Check:
 - filenames and extensions use exact casing
 - images use correct fit mode
 - image-backed cards use predictable taxonomy
+- primary brand mark does not rely on `/public/logo.*`
 - generated images contain no unwanted text/logos
 - decorative images are marked decorative
 - meaningful images have alt text
@@ -203,7 +209,8 @@ When upgrading existing pages:
 3. replace old motion with Anime.js presets
 4. normalize page configs
 5. move copy into structured content
-6. deprecate page-specific layout logic once equivalent variants exist
+6. replace file-based primary brand logos with the shared local SVG logo component
+7. deprecate page-specific layout logic once equivalent variants exist
 
 Do not attempt a full rewrite unless schedule and QA support it.
 

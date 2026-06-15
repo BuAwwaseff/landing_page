@@ -9,6 +9,7 @@ This file controls:
 - image fit behavior
 - content-driven image references
 - deployment-safe asset handling
+- shared brand mark implementation rules
 
 This file does not control:
 - page section order
@@ -42,7 +43,6 @@ Recommended taxonomy:
 /public/player/sports
 /public/offer
 /public/messaging
-/public/logo.svg
 ```
 
 Rules:
@@ -51,7 +51,27 @@ Rules:
 - `/public/player/sports` for sports category art
 - `/public/offer` for offer/promo art
 - `/public/messaging` for Telegram, WhatsApp, and contact platform icons
-- `/public/logo.svg` for shared brand mark usage
+
+## Shared Brand Mark Standard
+
+The primary MelBet brand mark is not a public image asset.
+
+Use a shared local code implementation instead.
+
+Technical standard:
+- implement the brand mark in `app/components/logo/MelbetAnimatedLogo.tsx` or the equivalent shared logo primitive file
+- keep the SVG path data inline in the component
+- keep size presets in the component through local width/frame maps such as `nav`, `sm`, `md`, and `lg`
+- keep the sanctioned logo motion local to the shared logo primitive via colocated CSS or a dedicated shared logo stylesheet
+- support `prefers-reduced-motion`
+- use `currentColor` or explicit inline color mapping so the SVG cannot disappear because of missing external CSS
+- import the component directly into shared header/footer layout components
+
+Do not:
+- use `/public/logo.svg` or `/public/logo.png` for the primary brand mark
+- render the primary brand mark with `next/image`
+- source the primary brand mark from content/config/market assets
+- fetch the primary brand mark from remote URLs
 
 ---
 
@@ -73,6 +93,9 @@ Do not let media-led player cards invent:
 - alt text
 
 outside content files.
+
+Exception:
+- the primary shared brand mark does not come from content and does not use a content `src`
 
 ---
 
@@ -161,6 +184,9 @@ Before referencing an asset:
 
 Do not assume Windows local casing will work in deployment.
 
+Exception:
+- this path-validation flow does not apply to the primary shared brand mark because it is a local component, not a public file
+
 ---
 
 # 8. Image Generation Rules
@@ -211,6 +237,10 @@ Decorative images should be marked decorative:
 - `aria-hidden` for pure decoration
 
 Do not write alt text inside components if the image is content-driven.
+
+For the shared brand mark:
+- use `decorative` when the surrounding branded link already exposes the accessible label
+- otherwise provide `ariaLabel` directly to the shared logo component
 
 ---
 

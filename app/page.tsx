@@ -64,9 +64,32 @@ function SmartVisual({
   );
 }
 
+function CardAction({
+  href,
+  label,
+}: {
+  href: string;
+  label: string;
+}) {
+  return (
+    <Link
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="inline-flex items-center rounded-full bg-[#FFC100] px-5 py-2.5 text-sm font-bold text-black shadow-[0_10px_30px_rgba(255,193,0,0.18)] transition-all duration-300 hover:-translate-y-[1px] hover:brightness-95"
+    >
+      {label}
+    </Link>
+  );
+}
+
 export default function HomePage() {
   const { language, isArabic } = useLanguage();
   const content = getLandingPlayerHomeContent(language);
+  const sportsCtaLabel = isArabic ? "العب الآن" : "Play now";
+  const gamesCtaLabel = isArabic ? "العب الآن" : "Play now";
+  const welcomeOfferCtaLabel = isArabic ? "احصل على 200$ الآن" : "Claim 200$ now";
+  const offerCtaLabel = isArabic ? "احصل الآن" : "Claim now";
 
   return (
     <main dir={isArabic ? "rtl" : "ltr"} className="landing-page flex min-h-full w-full flex-col">
@@ -79,7 +102,7 @@ export default function HomePage() {
             <div className="pointer-events-none absolute bottom-0 right-0 h-40 w-40 rounded-full bg-[#7CF0FF]/[0.08] blur-3xl" />
             <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(118deg,rgba(0,0,0,0.3),transparent_62%)]" />
 
-            <div className="relative grid section-gap items-center lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.92fr)]">
+            <div className="relative grid section-gap items-start lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.92fr)]">
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-3">
                   <div className="inline-flex rounded-full border border-[#FFC100]/20 bg-[#FFC100]/10 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.2em] text-[#FFC100]">
@@ -96,16 +119,37 @@ export default function HomePage() {
 
                 <div className="mt-6 flex flex-wrap gap-3">
                   <Link
-                    href="/#games"
+                    href={content.hero.primaryHref}
+                    target="_blank"
+                    rel="noreferrer"
                     className="landing-button-primary rounded-full px-6 py-3 text-sm font-bold"
                   >
                     {content.hero.primary}
                   </Link>
                   <Link
-                    href="/#offers"
+                    href={content.hero.secondaryHref}
+                    target="_blank"
+                    rel="noreferrer"
                     className="landing-button-secondary rounded-full px-6 py-3 text-sm font-bold"
                   >
                     {content.hero.secondary}
+                  </Link>
+                </div>
+
+                <div className="mt-3 flex flex-wrap gap-3">
+                  <Link
+                    href={content.finalCta.primaryHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center rounded-full border border-[#FFC100]/25 bg-[#FFC100]/10 px-5 py-2.5 text-sm font-semibold text-[#FFC100] transition-all duration-300 hover:-translate-y-[1px] hover:border-[#FFC100]/55 hover:bg-[#FFC100] hover:text-black"
+                  >
+                    {content.finalCta.primary}
+                  </Link>
+                  <Link
+                    href={content.finalCta.secondaryHref}
+                    className="inline-flex items-center rounded-full border border-white/12 bg-white/[0.05] px-5 py-2.5 text-sm font-semibold text-white/82 transition-all duration-300 hover:-translate-y-[1px] hover:border-white/28 hover:bg-white hover:text-black"
+                  >
+                    {content.finalCta.secondary}
                   </Link>
                 </div>
 
@@ -119,7 +163,6 @@ export default function HomePage() {
                     </span>
                   ))}
                 </div>
-
               </div>
 
               <div className="min-w-0">
@@ -169,7 +212,6 @@ export default function HomePage() {
                 </article>
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -179,7 +221,7 @@ export default function HomePage() {
           <SectionHeading eyebrow={content.games.eyebrow} title={content.games.title} body={content.games.body} />
           <div className="mt-8 grid gap-4 lg:grid-cols-3">
             {content.games.cards.map((card) => (
-              <article key={card.title} className="landing-surface landing-hover group rounded-[30px] overflow-hidden">
+              <article key={card.title} className="landing-surface landing-hover group overflow-hidden rounded-[30px]">
                 <div className="relative aspect-[4/3]">
                   <SmartVisual
                     src={card.image}
@@ -198,7 +240,9 @@ export default function HomePage() {
                     ) : null}
                   </div>
                   <h3 className="type-card-title font-bold text-white">{card.title}</h3>
-                  <p className="type-body text-white/72">{card.body}</p>
+                  <div className="pt-1">
+                    <CardAction href={content.hero.primaryHref} label={gamesCtaLabel} />
+                  </div>
                 </div>
               </article>
             ))}
@@ -210,7 +254,12 @@ export default function HomePage() {
         <div className="container-main">
           <SectionHeading eyebrow={content.sports.eyebrow} title={content.sports.title} body={content.sports.body} />
           <div className="mt-8 grid gap-4 lg:grid-cols-[1.08fr_0.92fr]">
-            <article className="landing-surface landing-hover group relative min-h-[420px] overflow-hidden rounded-[32px]">
+            <Link
+              href={content.hero.secondaryHref}
+              target="_blank"
+              rel="noreferrer"
+              className="landing-surface landing-hover group relative block min-h-[420px] overflow-hidden rounded-[32px]"
+            >
               <SmartVisual
                 src={content.sports.lead.image}
                 alt={content.sports.lead.title}
@@ -225,7 +274,7 @@ export default function HomePage() {
                 <h3 className="type-card-title mt-3 font-bold text-white">{content.sports.lead.title}</h3>
                 <p className="type-body mt-3 max-w-xl text-white/72">{content.sports.lead.body}</p>
               </div>
-            </article>
+            </Link>
 
             <div className="grid gap-4">
               {content.sports.rails.map((card) => (
@@ -250,7 +299,9 @@ export default function HomePage() {
                       </div>
                       <div className="mt-3">
                         <h3 className="type-card-title font-bold text-white">{card.title}</h3>
-                        <p className="type-body mt-2 text-white/72">{card.body}</p>
+                        <div className="mt-4">
+                          <CardAction href={content.hero.secondaryHref} label={sportsCtaLabel} />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -265,7 +316,7 @@ export default function HomePage() {
         <div className="container-main">
           <SectionHeading eyebrow={content.offers.eyebrow} title={content.offers.title} body={content.offers.body} />
           <div className="mt-8 grid gap-4 lg:grid-cols-3">
-            {content.offers.cards.map((card) => (
+            {content.offers.cards.map((card, index) => (
               <article key={card.title} className="landing-surface-accent landing-hover group overflow-hidden rounded-[30px]">
                 <div className="relative aspect-[4/3]">
                   <SmartVisual
@@ -285,7 +336,12 @@ export default function HomePage() {
                     ) : null}
                   </div>
                   <h3 className="type-card-title font-bold text-white">{card.title}</h3>
-                  <p className="type-body text-white/72">{card.body}</p>
+                  <div className="pt-1">
+                    <CardAction
+                      href={content.hero.primaryHref}
+                      label={index === 0 ? welcomeOfferCtaLabel : offerCtaLabel}
+                    />
+                  </div>
                 </div>
               </article>
             ))}

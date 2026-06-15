@@ -1,0 +1,129 @@
+@keyframes topbarLogoPulse {
+  0%,
+  55%,
+  100% {
+    opacity: 0.9;
+    transform: scale(1);
+    filter: drop-shadow(0 0 8px rgba(208, 161, 26, 0.12));
+  }
+
+  68% {
+    opacity: 0.95;
+    transform: scale(1.008);
+    filter: drop-shadow(0 0 12px rgba(208, 161, 26, 0.2));
+  }
+
+  78% {
+    opacity: 1;
+    transform: scale(1.016);
+    filter:
+      drop-shadow(0 0 18px rgba(208, 161, 26, 0.28))
+      drop-shadow(0 0 28px rgba(255, 214, 92, 0.14));
+  }
+
+  88% {
+    opacity: 0.96;
+    transform: scale(1.01);
+    filter: drop-shadow(0 0 14px rgba(208, 161, 26, 0.24));
+  }
+}
+
+.melbet-logo {
+  position: relative;
+  display: inline-flex;
+  width: min(100%, var(--melbet-frame-width, 214px));
+  max-width: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  padding: var(--melbet-frame-pad-y, 10px) var(--melbet-frame-pad-x, 12px);
+  isolation: isolate;
+}
+
+.melbet-logo__svg {
+  display: block;
+  width: min(100%, var(--melbet-width, 190px));
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.12));
+}
+
+.melbet-logo__letter {
+  transform-box: fill-box;
+  transform-origin: center center;
+  animation: melbetLetterTwirl 4.9s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  animation-delay: calc(var(--melbet-letter-index, 0) * 100ms);
+  will-change: transform;
+}
+
+.melbet-logo__letter path {
+  fill: currentColor;
+}
+
+.melbet-logo__letter--mel {
+  color: #f7f9fc;
+}
+
+.melbet-logo__letter--bet {
+  color: #ffbc00;
+}
+
+.melbet-logo--nav .melbet-logo__letter {
+  animation-name: melbetLetterTwirlNav;
+  animation-duration: 4.8s;
+}
+
+.melbet-logo--nav .melbet-logo__svg {
+  animation: topbarLogoPulse 6.4s ease-in-out infinite;
+  filter:
+    drop-shadow(0 0 10px rgba(0, 0, 0, 0.14))
+    drop-shadow(0 0 10px rgba(255, 188, 0, 0.06));
+}
+
+@keyframes melbetLetterTwirl {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotateZ(0deg) scale(1);
+  }
+
+  20% {
+    transform: translate3d(0, -0.5px, 0) rotateZ(-0.9deg) scale(0.998);
+  }
+
+  48% {
+    transform: translate3d(0, -1.8px, 0) rotateZ(1.5deg) scale(1.008);
+  }
+
+  72% {
+    transform: translate3d(0, -0.6px, 0) rotateZ(-0.75deg) scale(1.002);
+  }
+}
+
+@keyframes melbetLetterTwirlNav {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotateZ(0deg) scale(1);
+  }
+
+  22% {
+    transform: translate3d(0, -0.45px, 0) rotateZ(-0.65deg) scale(0.999);
+  }
+
+  48% {
+    transform: translate3d(0, -1.4px, 0) rotateZ(1.1deg) scale(1.007);
+  }
+
+  74% {
+    transform: translate3d(0, -0.5px, 0) rotateZ(-0.55deg) scale(1.002);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .melbet-logo,
+  .melbet-logo__svg,
+  .melbet-logo__letter {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
